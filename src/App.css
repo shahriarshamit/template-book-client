@@ -1,42 +1,163 @@
+:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #213547;
+    background-color: #ffffff;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+    margin: 0 auto;
+    padding: 2rem;
+    border: 1px solid #007d9354;
+    border-radius: 24px;
+    padding: 24px;
+    background-color: white;
+    width: 100%;
+    max-width: 800px;
+    box-sizing: border-box;
+}
+
+/* Inputs */
+input, textarea, select {
+    width: 100%;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+input[type="submit"] {
+    background-color: #005564;
+    color: #fff;
+    border: 0;
+    height: 40px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+textarea {
+    height: 120px;
+}
+
+table, th, td {
+    border: 1px solid;
+}
+
+td {
+    padding: 10px;
+}
+
+a {
+    font-weight: 500;
+    color: #007d93;
+    text-decoration: inherit;
+}
+
+a:hover {
+    color: #005564;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #f1f6f4;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+h1 {
+    font-size: 2.2em;
+    line-height: 1.1;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    border-bottom: 1px solid #007d9354;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+}
+
+nav {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+}
+
+footer {
+    border-top: 1px solid #007d9354;
+    text-align: center;
+    padding-top: 1rem;
+    margin-top: 3rem;
+    font-size: 0.8rem;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Books */
+ul.books {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+ul.books li {
+    flex: 1 0 21%;
 }
 
-.card {
-  padding: 2em;
+ul.books li a {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
-.read-the-docs {
-  color: #888;
+ul.books img {
+    max-height: 200px;
+    border-radius: 5px;
+}
+
+ul.books h3 {
+    text-align: center;
+    font-weight: 300;
+}
+
+.bookdetails {
+    display: flex;
+    gap: 20px;
+}
+
+.col-1 {
+    flex-basis: 40%;
+}
+.col-2 {
+    flex-basis: 60%
+}
+
+.filters {
+    max-width: 200px;
+    margin-bottom: 20px;
+}
+
+.delete {
+    border: 0;
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
 }
