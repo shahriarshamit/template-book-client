@@ -2,6 +2,7 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 import Home from './routes/Home/home';
 import Books from './routes/Books/book';
+import BookSingle from './routes/Books/single';
 import About from './routes/About/about';
 
 import Header from './components/header';
@@ -14,6 +15,7 @@ function App() {
         <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/books" element={<Books/>}/>
+            <Route path="/books/:slug" element={<BookSingle/>}/>
             <Route path="/about" element={<About/>}/>
         </Routes>
         <Footer/>

@@ -17,15 +17,17 @@ function Books() {
                 }
                 const response = await fetch(url);
                 if (!response.ok) {
-                    throw new Error('Data fetch failed');
+                    setIsError('Error: Data fetch failed. Please try again later.');
+                    setIsLoading(false);
+                } else {
+                    const apiResponse = await response.json();
+                    const booksData = apiResponse.data;
+                    setData(booksData);
+                    setIsLoading(false);
                 }
-                const apiResponse = await response.json();
-                const booksData = apiResponse.data;
-                setData(booksData);
-                setIsLoading(false);
             } catch (error) {
                 console.log(error);
-                setIsError('Error fetching data. Please try again later.');
+                setIsError('Error: fetching data. Please try again later.');
                 setIsLoading(false);
             }
         };
@@ -33,14 +35,12 @@ function Books() {
     }, [selectedCategory]);
 
     return (<section>
-        <h1>Books</h1>
-        <p>Books Page Content</p>
-        <h2>Books List</h2>
+        <h1>Books List</h1>
         <div className="filters">
             <label>Categories</label>
             <select onChange={function (e) {
-                setSelectedCategory(e.target.value)
-            }}>
+                        setSelectedCategory(e.target.value)
+                            }}>
                 <option value="">All</option>
                 <option value="romance">Romance</option>
                 <option value="science">Science</option>
@@ -52,19 +52,16 @@ function Books() {
                 <option value="other">other</option>
             </select>
         </div>
-        { isLoading ?
-                        (<p>Loading</p>) :
-                        isError ?
-                    ({isError}) :
-                            (<ul className="books">
+        {isLoading ? (<p>Loading</p>) : isError ? ({isError}) :
+                        (<ul className="books">
                             {data.map(function (item) {
-                                                    return (<li key={item._id}>
-        <Link to={`/books/${item.slug}`}>
-        <img src={`http://localhost:8000/uploads/${item.thumbnail}`} alt={item.title}/>
-        <h3>{item.title}</h3>
-        </Link>
-    </li>)
-                                                })}
+                                                        return (<li key={item._id}>
+                                                            <Link to={`/books/${item.slug}`}>
+                                                            <img src={`http://localhost:8000/uploads/${item.thumbnail}`} alt={item.title}/>
+                                                            <h3>{item.title}</h3>
+                                                            </Link>
+                                                        </li>);
+                                                    })}
                         </ul>)}
     </section>);
 }
