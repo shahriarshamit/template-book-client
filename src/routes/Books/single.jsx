@@ -8,34 +8,31 @@ function BookSingle() {
     const [isLoading, setIsLoading] = useState(true);
     const [isError, setIsError] = useState(null);
 
-    useEffect(function () {
-        const fetchData = async function () {
-            try {
-                let url = baseUrl;
-                if (!paramUrl.slug) {
-                    setIsError('Error: Missing slug. Please try again with proper url.');
+    const fetchData = async function () {
+        try {
+            let url = baseUrl;
+            if (!paramUrl.slug) {
+                setIsError('Error: Missing slug. Please try again with proper url.');
+                setIsLoading(false);
+            } else {
+                url = url + '/' + paramUrl.slug;
+                const response = await fetch(url);
+                if (!response.ok) {
+                    setIsError('Error: Data fetch failed. Please try again later.');
                     setIsLoading(false);
                 } else {
-                    url = url + '/' + paramUrl.slug;
-                    const response = await fetch(url);
-                    if (!response.ok) {
-                        setIsError('Error: Data fetch failed. Please try again later.');
-                        setIsLoading(false);
-                    } else {
-                        const apiResponse = await response.json();
-                        const booksData = apiResponse.data;
-                        setData(booksData);
-                        setIsLoading(false);
-                    }
+                    const apiResponse = await response.json();
+                    const booksData = apiResponse.data;
+                    setData(booksData);
+                    setIsLoading(false);
                 }
-            } catch (error) {
-                console.log(error);
-                setIsError('Error: Data fetch failed. Please try again later.');
-                setIsLoading(false);
             }
-        };
-        fetchData();
-    }, []);
+        } catch (error) {
+            console.log(error);
+            setIsError('Error: Data fetch failed. Please try again later.');
+            setIsLoading(false);
+        }
+    };
 
     function StarRating( {numberOfStars}) {
         const stars = [];
@@ -45,10 +42,14 @@ function BookSingle() {
         return (<div>Rating: {stars}</div>);
     }
 
+    useEffect(function () {
+        fetchData();
+    }, []);
+
     return (<section>
         { isLoading ? (<p>Loading</p>) : isError ? ({isError}) :
                         (<div>
-                            <Link to={"/books"}>🔙 Books</Link>
+                            <Link to={"/books"}>🔙 Book List</Link>
                             <div className="book-details">
                                 <div className="col-1">
                                     <img src={`http://localhost:8000/uploads/${data?.thumbnail}`} alt={data?.title} />

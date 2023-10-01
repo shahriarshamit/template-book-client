@@ -36,21 +36,26 @@ function Books() {
 
     return (<section>
         <h1>Books List</h1>
-        <div className="filters">
-            <label>Categories</label>
-            <select onChange={function (e) {
-                        setSelectedCategory(e.target.value)
-                            }}>
-                <option value="">All</option>
-                <option value="romance">Romance</option>
-                <option value="science">Science</option>
-                <option value="crime">Crime</option>
-                <option value="food">Food</option>
-                <option value="adventure">Adventure</option>
-                <option value="thriller">Thriller</option>
-                <option value="fiction">Fiction</option>
-                <option value="other">other</option>
-            </select>
+        <div className="panel">
+            <div className="col-1">
+                <label>Categories</label>
+                <select className="filters" onChange={function (e) {
+                            setSelectedCategory(e.target.value)
+                                }}>
+                    <option value="">All</option>
+                    <option value="romance">Romance</option>
+                    <option value="science">Science</option>
+                    <option value="crime">Crime</option>
+                    <option value="food">Food</option>
+                    <option value="adventure">Adventure</option>
+                    <option value="thriller">Thriller</option>
+                    <option value="fiction">Fiction</option>
+                    <option value="other">other</option>
+                </select>
+            </div>
+            <div className="col-2">
+                <Link className={"book-create"} to="/books/add">+ Add New Book</Link>
+            </div>
         </div>
         {isLoading ? (<p>Loading</p>) : isError ? ({isError}) :
                         (<ul className="books">
