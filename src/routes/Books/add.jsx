@@ -4,7 +4,8 @@ import {Link} from 'react-router-dom';
 import NoImageSelected from "../../assets/no-image-selected.jpg";
 
 function BookAdd() {
-    const baseUrl = 'http://localhost:8000/api/v1/books/add';
+    const baseUrl = 'http://localhost:8001/api/v1/books/add';
+    
     const [isLoading, setIsLoading] = useState(true);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isError, setIsError] = useState(null);

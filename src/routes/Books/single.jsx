@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Link, useParams} from 'react-router-dom';
 
 function BookSingle() {
-    const baseUrl = 'http://localhost:8000/api/v1/books';
+    const baseUrl = 'http://localhost:8001/api/v1/books';
     const paramUrl = useParams();
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
